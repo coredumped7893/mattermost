@@ -20,7 +20,7 @@ import {getThread} from 'mattermost-redux/selectors/entities/threads';
 import {getCurrentUserId} from 'mattermost-redux/selectors/entities/users';
 import type {GenericAction} from 'mattermost-redux/types/actions';
 
-import {selectPostCard} from 'actions/views/rhs';
+import {selectPost} from 'actions/views/rhs';
 import {updateThreadLastOpened} from 'actions/views/threads';
 import {getHighlightedPostId, getSelectedPostFocussedAt} from 'selectors/rhs';
 import {getSocketStatus} from 'selectors/views/websocket';
@@ -78,7 +78,7 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
             getNewestPostThread,
             getPostThread,
             getThread: fetchThread,
-            selectPostCard,
+            selectPost,
             updateThreadLastOpened,
             updateThreadRead,
         }, dispatch),

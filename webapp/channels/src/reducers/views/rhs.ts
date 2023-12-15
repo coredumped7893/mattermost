@@ -22,7 +22,7 @@ function selectedPostId(state = '', action: GenericAction) {
     case ActionTypes.SELECT_POST:
         return action.postId;
     case ActionTypes.SELECT_POST_CARD:
-        return '';
+        return action.postId;
     case PostTypes.POST_REMOVED:
         if (action.data && action.data.id === state) {
             return '';

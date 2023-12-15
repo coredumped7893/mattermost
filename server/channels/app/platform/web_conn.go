@@ -845,7 +845,7 @@ func (wc *WebConn) ShouldSendEvent(msg *model.WebSocketEvent) bool {
 	if chID := msg.GetBroadcast().ChannelId; chID != "" {
 		// For typing events, we don't send them to users who don't have
 		// that channel or thread opened.
-		if msg.EventType() == model.WebsocketEventTyping && wc.notInChannelAndThread(chID) {
+		if (msg.EventType() == model.WebsocketEventTyping || msg.EventType() == model.WebsocketEventReactionAdded) && wc.notInChannelAndThread(chID) {
 			return false
 		}
 

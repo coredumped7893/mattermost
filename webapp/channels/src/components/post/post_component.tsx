@@ -332,7 +332,8 @@ const PostComponent = (props: Props): JSX.Element => {
         if (props.handleCardClick) {
             props.handleCardClick(post);
         }
-        props.actions.selectPostCard(post);
+        console.log(`handling card click ----------`);
+        props.actions.selectPost(post);
     };
 
     // When adding clickable targets within a root post to exclude from post's on click to open thread,

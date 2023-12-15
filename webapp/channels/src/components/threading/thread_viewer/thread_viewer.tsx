@@ -41,7 +41,7 @@ export type Props = Attrs & {
         getNewestPostThread: (rootId: string) => Promise<any>|ActionFunc;
         getPostThread: (rootId: string, fetchThreads: boolean) => Promise<any>|ActionFunc;
         getThread: (userId: string, teamId: string, threadId: string, extended: boolean) => Promise<any>|ActionFunc;
-        selectPostCard: (post: Post) => void;
+        selectPost: (post: Post) => void;
         updateThreadLastOpened: (threadId: string, lastViewedAt: number) => unknown;
         updateThreadRead: (userId: string, teamId: string, threadId: string, timestamp: number) => unknown;
     };
@@ -129,7 +129,7 @@ export default class ThreadViewer extends React.PureComponent<Props, State> {
             currentTeamId,
             selected,
         } = this.props;
-
+        console.log(`fetching thread -----------`);
         if (selected && this.getReplyCount() && (this.props.selected as Post)?.is_following) {
             return getThread(
                 currentUserId,
@@ -169,6 +169,7 @@ export default class ThreadViewer extends React.PureComponent<Props, State> {
     // fetches the thread/posts if needed and
     // scrolls to either bottom or new messages line
     private onInit = async (reconnected = false): Promise<void> => {
+        console.log(`initializing thread viewer-----------`);
         this.setState({isLoading: !reconnected});
         if (reconnected || this.morePostsToFetch()) {
             await this.props.actions.getPostThread(this.props.selected?.id || this.props.rootPostId, !reconnected);
@@ -194,7 +195,7 @@ export default class ThreadViewer extends React.PureComponent<Props, State> {
             return;
         }
 
-        this.props.actions.selectPostCard(post);
+        this.props.actions.selectPost(post);
     };
 
     public render(): JSX.Element {
